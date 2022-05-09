@@ -1,0 +1,92 @@
+<form class="persons container" [formGroup]="personForm" (submit)="onSubmit()">
+  <div class="columns">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="name" name="name">
+        <mat-hint
+          class="help is-danger"
+          *ngIf="personForm.get('name')?.touched && personForm.get('name')?.errors?.required"
+        >Requerido</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido Paterno</mat-label>
+        <input type="text" matInput formControlName="firstName">
+        <mat-hint
+          class="help is-danger"
+          *ngIf="personForm.get('firstName')?.touched && personForm.get('firstName')?.errors?.required"
+        >Requerido</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido Materno</mat-label>
+        <input type="text" matInput formControlName="lastName">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>RFC</mat-label>
+        <input type="text" matInput formControlName="rfc">
+        <mat-hint
+          class="help is-danger"
+          *ngIf="personForm.get('rfc')?.touched && personForm.get('rfc')?.errors?.required"
+        >Requerido</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <mat-form-field appearance="outline">
+        <mat-label>CURP</mat-label>
+        <input type="text" matInput formControlName="curp">
+        <mat-hint
+          class="help is-danger"
+          *ngIf="personForm.get('curp')?.touched && personForm.get('curp')?.errors?.required"
+        >Requerido</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="birthDay" formControlName="birthday">
+        <mat-datepicker-toggle matSuffix [for]="birthDay"></mat-datepicker-toggle>
+        <mat-datepicker #birthDay></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <p>Genero</p>
+      <mat-button-toggle-group name="genderId" aria-label="genderId" formControlName="genderId">
+        <mat-button-toggle value="masculino">Masculino</mat-button-toggle>
+        <mat-button-toggle value="femenino">Femenino</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div class="column">
+      <p>Tipo de persona</p>
+      <mat-button-toggle-group name="typeId" aria-label="typeId" formControlName="typeId">
+        <mat-button-toggle value="moral">Moral</mat-button-toggle>
+        <mat-button-toggle value="física">Física</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <p>Avatar</p>
+      <input type="file" (change)="onFileChange($event)"/>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" [disabled]="!personForm.valid" type="submit">Guardar</button>
+      <button class="button is-link is-pulled-right" [routerLink]="['/person']">Regresar</button>
+    </div>
+  </div>
+</form>

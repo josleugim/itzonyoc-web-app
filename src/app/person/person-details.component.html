@@ -1,0 +1,43 @@
+<div class="container" *ngIf="person">
+  <div class="columns">
+    <div class="column">
+      <h2 class="title">Detalles</h2>
+    </div>
+  </div>
+  <div class="columns box">
+    <div class="column is-2">
+      <figure class="image is-fullwidth">
+        <img [src]="person.avatarUrl">
+      </figure>
+    </div>
+    <div class="column is-2">
+      <p><label class="label">Nombre: </label>{{person.name}}</p>
+      <p><label class="label">Apellido Paterno: </label>{{person.firstName}}</p>
+      <p *ngIf="person.lastName"><label class="label">Apellido Materno: </label>{{person.lastName}}</p>
+    </div>
+    <div class="column">
+      <p><label class="label">RFC: </label>{{person.rfc}}</p>
+      <p><label class="label">CURP: </label>{{person.curp}}</p>
+    </div>
+    <div class="column">
+      <p><label class="label">Genero: </label>{{person.genderId}}</p>
+      <p><label class="label">Tipo: </label>{{person.typeId}}</p>
+      <p>
+        <label class="checkbox">
+          <input type="checkbox" [checked]="person.statusId" disabled>
+          Activo
+        </label>
+      </p>
+    </div>
+    <div class="column">
+      <p><label class="label">Fecha de nacimiento: </label>{{person.birthday}}</p>
+      <p><label class="label">Fecha de registro: </label>{{person.registrationDate}}</p>
+      <p *ngIf="person.updatedAt"><label class="label">Modificado el: </label>{{person.updatedAt}}</p>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column is-12">
+      <button class="button is-link is-pulled-right" [routerLink]="['/person']">Regresar</button>
+    </div>
+  </div>
+</div>

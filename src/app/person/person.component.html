@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <button class="button is-dark" [routerLink]="['/create-person']">
+        <span class="icon-text">
+          <span class="icon">
+            <mat-icon aria-hidden="false" aria-label="Add person">person_add</mat-icon>
+          </span>
+          <span>Agregar</span>
+        </span>
+      </button>
+    </div>
+    <form class="column" [formGroup]="filterForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Filtrar por nombre</mat-label>
+        <input type="text" matInput name="searchText" (input)="filterPersonsByName($event)">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="columns is-multiline">
+    <div class="column" *ngFor="let person of persons | searchName:searchText">
+      <div class="box">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido paterno</th>
+            <th>Apellido materno</th>
+            <th>RFC</th>
+            <th>CURP</th>
+            <th>Genero ID</th>
+            <th>Tipo ID</th>
+            <th>Opciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{person.name}}</td>
+            <td>{{person.firstName}}</td>
+            <td>{{person.lastName}}</td>
+            <td>{{person.rfc}}</td>
+            <td>{{person.curp}}</td>
+            <td>{{person.genderId}}</td>
+            <td>{{person.typeId}}</td>
+            <td>
+              <div class="field is-grouped">
+                <p class="control">
+                  <button class="button is-link is-outlined is-small" [routerLink]="['/person-details/' + person.id]">
+                    Detalles
+                  </button>
+                </p>
+                <p class="control">
+                  <button class="button is-warning is-outlined is-small" [routerLink]="['/edit-person/' + person.id]">
+                    Editar
+                  </button>
+                </p>
+                <p class="control">
+                  <button class="button is-danger is-outlined is-small" (click)="deleteById(person.id)">
+                    Borrar
+                  </button>
+                </p>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
